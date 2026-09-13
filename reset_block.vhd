@@ -11,9 +11,12 @@ end reset_block;
 
 architecture rtl of reset_block is
     -- A 2-stage shift register (Flip-Flops) used for synchronization
+	 signal rst_clean : std_logic;
     signal rst_reg : std_logic_vector(1 downto 0) := (others => '1');
+	 constant timeout_cycles : integer := 1000000;
+	 
 begin
-
+	 
     process(clk, rst_n)
     begin
         if rst_n = '0' then

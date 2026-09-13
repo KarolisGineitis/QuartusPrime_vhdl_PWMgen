@@ -21,11 +21,12 @@ entity pwm_gen is
 end pwm_gen;
 
 architecture str of pwm_gen is
-
+		
+		signal rst : std_logic;				-- main system rst
 	-- PLL signals
-		signal clk   : std_logic;
-		signal pll_locked : std_logic;
-		signal rst : std_logic;
+		signal clk   : std_logic;			-- main system clock
+		signal pll_locked : std_logic;	-- High when the clock is stable
+		signal rst_pll : std_logic;		-- reset for PLL that is active high and synhronized to 50MHz
 	-- Button debounce signals
 		constant timeout_cycles : integer := 1000000; 
 		signal btns_clean : std_logic_vector(switch_count - 1 downto 0) := (others =>'1');
@@ -39,18 +40,25 @@ begin
 		led_lock <= not pll_locked;
 
     -- Instatiations of modules
+		RESET_inst : entity work.reset_block(rtl)	-- convert the raw hardware button to active high and synchronize to raw 50MHz clock
+			port map (
+				clk 	=> clk_50,
+				rst_n => rst_n,
+				rst 	=> rst_pll
+			);
 		PLL_block_inst : entity work.PLL_block(SYN)
 			port map (
-				inclk0 => clk_50,   	-- Connect the external clock pin
-				areset => rst,  		-- Connect the converted active-high reset
-				c0     => clk,   
-				locked => pll_locked  -- High when the clock is stable
+				inclk0 => clk_50,   		
+				areset => rst_pll,  		
+				c0     => clk,   			
+				locked => pll_locked  	
 			);
-		RESET_inst : entity work.reset_block(rtl)
+		SYS_RESET_inst : entity work.sys_reset_block(rtl)	-- create a system reset for the rest of the logic, that is synchronized to 100MHz clk
 			port map (
-				clk => clk_50,
-				rst_n => rst_n,
-				rst => rst
+				clk => clk,
+				rst_pll => rst_pll,
+				pll_locked => pll_locked,
+				sys_rst => rst
 			);
 		DEBOUNCE_block_inst : entity work.multi_debouncer_block(rtl)
 			generic map (
