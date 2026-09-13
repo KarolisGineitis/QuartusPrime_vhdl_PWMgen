@@ -12,6 +12,8 @@ Period change button --> PIN 114
 
 Reset button --> PIN 88
 
+PLL lock state --> PIN 1 = led
+
 The frequency of pwm is determined by the length of a counter, that increments each clock cycle. The button (on PIN 114) changes at what value does this counter reset. This counter acts as a variable frequency
 sawtooth waveform. The duty cycle is determined by a variable (button on PIN 73) threshold. When the counter reaches/exceeds this threshold, the output pin is set low and otherwise it is set high.
 So the duty cycle is a result of the calculation threshold = period * duty /100. "Period" is the value at which the counter resets, so changing "duty" determines how much of the period the pin is high or low.
