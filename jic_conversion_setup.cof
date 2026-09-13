@@ -2,7 +2,7 @@
 <cof>
 	<eprom_name>EPCS4</eprom_name>
 	<flash_loader_device>EP4CE6</flash_loader_device>
-	<output_filename>output_file.jic</output_filename>
+	<output_filename>output_for_EPCS4.jic</output_filename>
 	<n_pages>1</n_pages>
 	<width>1</width>
 	<mode>7</mode>
