@@ -1,0 +1,22 @@
+# Quartus compilation databases and working directories
+db/
+incremental_db/
+greybox_tmp/
+hc_output/
+
+# Output programming files (Optional: remove if you want to track .sof files)
+output_files/
+
+# Report and log files
+*.rpt
+*.summary
+*.smsg
+*.done
+*.jdi
+*.pin
+*.qws
+*.bak
+*.sld
+
+# EDA simulation tools directories
+simulation/
