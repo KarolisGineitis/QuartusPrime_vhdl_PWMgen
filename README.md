@@ -39,7 +39,7 @@ Finally the default board operation is captured after a release of the reset but
 <img width="1065" height="642" alt="Image" src="https://github.com/user-attachments/assets/70838a5a-e498-4ec1-aacb-2da5c630881e" />
 
 
-As a note, here is a picture of faulty operation, before thrsh_sync was included in pwm_simple_block.vhd. The short pulse was a result of the unsynchronized (to the sawtooth waveform) change of the threshold value.
+As a note, here is a picture of faulty operation, before thrsh_sync was included in pwm_simple_block.vhd. The short pulse was a result of the unsynchronized (to the "sawtooth waveform") change of the threshold value.
 <img width="1066" height="641" alt="Image" src="https://github.com/user-attachments/assets/0ad9f749-b081-4f19-aded-ce71aa1e69f2" />
 
 
