@@ -6,7 +6,7 @@ entity pwm_gen is
 		generic 
 		(
 			switch_count 	: positive := 2;
-			duty_default 	: integer range 0 to 100   := 30;		-- default duty with available range
+			duty_default 	: integer range 0 to 100   := 50;		-- default duty with available range
 			period_default : positive range 100 to 1000   := 100	-- default period with available range
 		);
 		port 

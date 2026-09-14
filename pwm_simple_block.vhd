@@ -14,6 +14,7 @@ end pwm_simple_block;
 
 architecture rtl of pwm_simple_block is
 	-- PWM module internal signals
+	signal thrsh_sync : integer range 0 to 1000 := 30; -- this threshold is "synchronized" to the main counter - helps avoid spurrious pulses after thrsh recalculation
 	signal clk_cnt : integer range 0 to 1000 := 0;
 	
 begin
@@ -29,6 +30,7 @@ begin
 			  clk_cnt <= clk_cnt + 1;
 			else
 			  clk_cnt <= 0;
+			  thrsh_sync <= threshold;
 			end if;
 			  
 		 end if;
@@ -40,9 +42,9 @@ begin
 	  if rising_edge(clk) then
 		 if rst = '1' then
 			pwm_out <= '0';
-	  
+		  
 		 else
-			if clk_cnt < threshold then
+			if clk_cnt < thrsh_sync then
 				pwm_out <= '1';
 	  
 			else

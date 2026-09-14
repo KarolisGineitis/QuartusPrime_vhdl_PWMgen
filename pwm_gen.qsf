@@ -67,7 +67,6 @@ set_global_assignment -name VHDL_FILE debouncer_block.vhd
 set_global_assignment -name VHDL_FILE pwm_gen.vhd
 set_global_assignment -name QIP_FILE PLL_block.qip
 set_global_assignment -name VHDL_FILE reset_block.vhd
-set_global_assignment -name VHDL_FILE pwm_block.vhd
 set_global_assignment -name VHDL_FILE pwm_simple_block.vhd
 set_global_assignment -name CDF_FILE PROGRAM_file.cdf
 set_global_assignment -name VHDL_FILE duty_button_block.vhd
