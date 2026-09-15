@@ -3,10 +3,10 @@ use IEEE.std_logic_1164.all;
 
 entity sys_reset_block is
     port (
-        clk   : in  std_logic; -- System clock
-		  rst_pll : in std_logic; -- the 50MHz reset, active-high
-		  pll_locked : in std_logic; -- is PLL locked? signal
-        sys_rst   : out std_logic  -- System active-high PLL synchronized reset
+        clk   : in  std_logic; 		-- System clock
+		  rst_pll : in std_logic; 		-- the 50MHz reset, active-high
+		  pll_locked : in std_logic; 	-- is PLL locked? signal
+        sys_rst   : out std_logic  	-- System active-high PLL synchronized reset
     );
 end sys_reset_block;
 

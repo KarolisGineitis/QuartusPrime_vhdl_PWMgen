@@ -60,7 +60,7 @@ begin
 				pll_locked => pll_locked,
 				sys_rst => rst
 			);
-		DEBOUNCE_block_inst : entity work.multi_debouncer_block(rtl)
+		DEBOUNCE_block_inst : entity work.multi_debouncer_block(rtl) -- debounce the duty and period change buttons
 			generic map (
 				switch_count => switch_count,
 				timeout_cycles => timeout_cycles
@@ -79,7 +79,7 @@ begin
 				threshold => thrsh,
 				clk_cnt_len => pwm_period
 			);
-		DUTY_inst : entity work.duty_button_block(rtl)
+		DUTY_inst : entity work.duty_button_block(rtl) -- module that registers duty button press and also recalculates threshold
 			generic map (
 				duty_default => duty_default,
 				period_default => period_default
@@ -91,7 +91,7 @@ begin
 				pwm_period => pwm_period,
 				thrsh => thrsh
 			);		
-		PERIOD_inst : entity work.period_button_block(rtl)
+		PERIOD_inst : entity work.period_button_block(rtl) -- module that registers period button press
 			generic map (
 				period_default => period_default
 			)

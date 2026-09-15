@@ -18,7 +18,7 @@ architecture rtl of period_button_block is
 
 	-- DUTY button module internal signals
 		signal period : positive range 100 to 1000 := period_default;
-		signal btn_last : std_logic := '1';
+		signal btn_last : std_logic := '1'; -- previous state of debounced button
 
 begin
 
@@ -29,7 +29,7 @@ begin
 		else
 		  if rising_edge(clk) then
 				btn_last <= btn;
-				if btn = '1' and btn_last = '0' then
+				if btn = '1' and btn_last = '0' then  -- change value only on the rising edge of the button signal (physically release the button)
 					if period >= 1000 then
 						period <= 100;
 					else
